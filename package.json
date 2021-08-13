@@ -1,10 +1,14 @@
 {
   "name": "node-red-contrib-cbus",
-  "version": "1.0.0",
-  "description": "Cbus library",
+  "version": "0.0.1",
+  "description": "CBUS library",
   "dependencies": {
     "mqtt": "^4.2.8"
   },
+  "repository": {
+        "type": "git",
+        "url": "https://github.com/GoktugUlkuer/node-red-contrib-cbus"
+    },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +19,8 @@
     "nodes": {
       "iot-scope-in": "iot-scope-in.js"
     }
-  }
+  },
+	"devDependencies": {
+		"mqtt": "^4.2.8"
+	}
 }
