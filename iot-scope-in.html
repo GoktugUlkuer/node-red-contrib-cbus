@@ -1,0 +1,66 @@
+<script type="text/javascript">
+    RED.nodes.registerType('iot-scope-in',{
+        category: 'CBUS',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"IoT Scope"},
+			broker : {value:"127.0.0.1"},
+            brokerport : {value:"1883"},
+			username : {value:""},
+			password : {value:""},
+			iot : {value:""},
+			projectname : {value:""},
+			valuename : {value:""},
+			unit : {value:""}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "font-awesome/fa-cloud-upload",
+        label: function() {
+            return this.name||"iot-scope-in";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="iot-scope-in">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Node Name </label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-broker"><i class="fa fa-tag"></i> Broker Address </label>
+        <input type="text" id="node-input-broker" placeholder="Broker Address">
+    </div>
+    <div class="form-row">
+        <label for="node-input-brokerport"><i class="fa fa-tag"></i> Broker Port </label>
+        <input type="text" id="node-input-brokerport" placeholder="1883">
+    </div>
+	<div class="form-row">
+        <label for="node-input-username"><i class="fa fa-tag"></i> Username </label>
+        <input type="text" id="node-input-username" placeholder="Username">
+    </div>
+	<div class="form-row">
+        <label for="node-input-password"><i class="fa fa-tag"></i> Password </label>
+        <input type="text" id="node-input-password" placeholder="Password">
+    </div>
+	<div class="form-row">
+        <label for="node-input-iot"><i class="fa fa-tag"></i> IoT ID </label>
+        <input type="text" id="node-input-iot" placeholder="IoT ID">
+    </div>
+	<div class="form-row">
+        <label for="node-input-projectname"><i class="fa fa-tag"></i> Project Name </label>
+        <input type="text" id="node-input-projectname" placeholder="Project Name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-valuename"><i class="fa fa-tag"></i> Value Name </label>
+        <input type="text" id="node-input-valuename" placeholder="Value Name">
+    </div>
+	<div class="form-row">
+        <label for="node-input-unit"><i class="fa fa-tag"></i> Unit </label>
+        <input type="text" id="node-input-unit" placeholder="Unit">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="iot-scope-in">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>
