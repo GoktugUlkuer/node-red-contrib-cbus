@@ -10,14 +10,16 @@ module.exports = function (RED) {
 		// Configuration options passed by Node Red
 		node.brokerAddress = config.broker || "127.0.0.1";
 		node.brokerPort = config.brokerport || "1883";
-		node.username = config.username;
-		node.password = config.password;
+		node.username = "2ccc6223-64e8-4b96-b6ef-c6fe4c7a7f36";
+		node.password = "c5bcb5c7-6ee0-41de-a502-22953b089d90";
 		node.projectName = config.projectname || "Project Name";
 		node.valueName = config.valuename || "Value Name";
 		node.iotId = config.iot;
 		node.unit = config.unit;
 
 		// Config node state
+		var isIotIdValid = node.iotId.length == 16;
+
 		var publishTopic = "CBUS/IOT_SCOPE/" + node.iotId;
 		var startTime, endTime;
 
@@ -32,24 +34,29 @@ module.exports = function (RED) {
 			reconnectPeriod: 5000
 		};
 
-		let my_client = mqtt.connect(`mqtt://` + node.brokerAddress + ":" + node.brokerPort, options);
+		let mqttClient = mqtt.connect(`mqtt://` + node.brokerAddress + ":" + node.brokerPort, options);
 
 		node.status({ fill: "red", shape: "ring", text: "Disconnected" });
 
-		if(node.unit){
+		if (node.unit) {
 			node.valueName += " [" + node.unit + "]";
 		}
 
 		node.on('input', function (msg) {
-			if (my_client.connected) {
+			if (mqttClient.connected) {
 
-				if(isNaN(msg.payload)){
+				if (isNaN(msg.payload)) {
 					console.log("input is not a number!");
 					return;
 				};
 
+				if (!isIotIdValid) {
+					console.log("IoT ID is not valid!");
+					return;
+				}
+
 				var json = [
-					{ "Var": "Timestamp", "Val": createTimestamp()},
+					{ "Var": "Timestamp", "Val": createTimestamp() },
 					{ "Var": node.valueName, "Val": msg.payload },
 					{ "Var": "", "Val": 0 },
 					{ "Var": "", "Val": 0 },
@@ -60,20 +67,15 @@ module.exports = function (RED) {
 				endTime = new Date();
 
 				var timeDiff = endTime - startTime;
-				// console.log(timeDiff);
-				// console.log(startTime);
-				// console.log(endTime);
-				
-				if(timeDiff < 900){
+
+				if (timeDiff < 900) {
 					console.log("trigger interval is 1 second!");
 					return;
 				}
-				else{
-					my_client.publish(publishTopic, JSON.stringify(json));
+				else {
+					mqttClient.publish(publishTopic, JSON.stringify(json));
 					startTime = new Date();
 				}
-
-
 			}
 		});
 
@@ -98,24 +100,24 @@ module.exports = function (RED) {
 			return str;
 		}
 
-		my_client.on('connect', function (connack) {
-			if (my_client.connected) {
+		mqttClient.on('connect', function (connack) {
+			if (mqttClient.connected) {
 				console.log("Connected to broker");
 				node.status({ fill: "green", shape: "dot", text: "Connected" });
 			}
 		});
 
-		my_client.on('reconnect', () => {
+		mqttClient.on('reconnect', () => {
 			console.log('connection reconnecting');
 			node.status({ fill: "yellow", shape: "ring", text: "Reconnecting" });
 		});
 
-		my_client.on('offline', () => {
+		mqttClient.on('offline', () => {
 			console.log('went offline');
 			node.status({ fill: "red", shape: "ring", text: "Disconnected" });
 		});
 
-		my_client.on('error', () => {
+		mqttClient.on('error', () => {
 			console.log('got error');
 			node.status({ fill: "red", shape: "ring", text: "Disconnected" });
 		});

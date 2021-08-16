@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-cbus",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CBUS library",
   "dependencies": {
     "brace-expansion": "^1.1.11",
