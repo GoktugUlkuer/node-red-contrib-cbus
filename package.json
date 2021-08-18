@@ -52,7 +52,7 @@
   },
   "author": "GoktugU",
   "license": "Apache-2.0",
-	"keywords": [ "node-red", "CBUS", "IoT", "MQTT", "IoT-Scope" ],
+	"keywords": [ "node-red", "CBUS", "IoT", "MQTT", "IoT-Scope", "scope", "trend", "graph", "trendline", "remote" ],
   "node-red": {
     "nodes": {
       "iot-scope-in": "iot-scope-in.js"
