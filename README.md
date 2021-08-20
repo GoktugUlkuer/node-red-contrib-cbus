@@ -2,6 +2,8 @@
 
 A node that sends data to the cloud by using MQTT protocol. These data can be monitored at IoT Scope's web page with the given IoT ID.
 
+![image](https://user-images.githubusercontent.com/84990490/130226045-bd6f660e-595e-414a-921e-ffa09654eb0f.png)
+
 # How to install
 
     cd ~/.node-red
@@ -47,3 +49,6 @@ IoT Scope :
 
 ![nr-iotscope](https://user-images.githubusercontent.com/84990490/129889051-4a0e9741-0114-43c1-9e22-5033f3fe4af9.gif)
 
+# Contact information
+
+ For any question -> <info@cbus.io>
