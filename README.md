@@ -2,7 +2,7 @@
 
 A node that sends data to the cloud by using MQTT protocol. These data can be monitored at IoT Scope's web page with the given IoT ID.
 
-![image](https://user-images.githubusercontent.com/84990490/130226045-bd6f660e-595e-414a-921e-ffa09654eb0f.png)
+![image](https://user-images.githubusercontent.com/84990490/130230937-191f7289-6f08-4bb8-b016-9ce323ef112e.png)
 
 # How to install
 
