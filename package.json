@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-cbus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A node that sends data to the cloud by using MQTT protocol. These data can be monitored at IoT Scope's web page with the given IoT ID.",
   "dependencies": {
     "brace-expansion": "^1.1.11",
